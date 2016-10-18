@@ -15,7 +15,7 @@ var browserSyncWatchFiles = [
 // browser-sync options
 // see: https://www.browsersync.io/docs/options/
 var browserSyncOptions = {
-    proxy: "localhost/theme_test/",
+    proxy: "https://dev.crowdform.co.uk/client",
     notify: false
 };
 
@@ -94,6 +94,8 @@ gulp.task('sass', function () {
 gulp.task('watch', function () {
     gulp.watch('./sass/**/*.scss', ['sass']);
     gulp.watch('./css/theme.css', ['cssnano']);
+    gulp.watch('./src/js/*.js', ['scripts']);
+    gulp.watch('./*', ['scripts']);
 });
 
 // Run: 
@@ -142,6 +144,9 @@ gulp.task('scripts', function() {
     // End - All BS4 stuff
 
     basePaths.dev + 'js/skip-link-focus-fix.js'
+      
+    basePaths.dev + 'js/app.js'
+      
     ])
     .pipe(concat('theme.min.js'))
     .pipe(uglify())
